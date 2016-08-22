@@ -1,11 +1,9 @@
 #include <iostream>
-#include <limits>
 #include <cmath>
 #include <string>
 #include <algorithm>
 #include <map>
 #include <vector>
-#define whatIs(x) std::cerr << #x << ": " << x << std::endl;
 
 using namespace std;
 
@@ -32,7 +30,7 @@ int main() {
 }
 
 int findDiameter(int n) {
-    check[n] = 1;
+    check[n] = true;
     int mx = -1, secMx = -1;
     for (auto it : mapp[n]) {
         if (!check[it]) {
