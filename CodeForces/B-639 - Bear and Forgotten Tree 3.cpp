@@ -1,6 +1,5 @@
 //codeforces.com/problemset/problem/639/B
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -16,12 +15,10 @@ int main() {
         return 0;
     }
 
-    vector<long> v[n+1];
-
     d++; h++;
     int i = 1, j = i + 1;
     while (j <= h) {
-        v[i].push_back(j);
+        cout << i << ' ' << j << '\n';
         i = j;
         j++;
     }
@@ -29,21 +26,15 @@ int main() {
     i--;
     int hr = d - h;
     while (j < n - hr + 1) {
-        v[i].push_back(j);
+        cout << i << ' ' << j << '\n';
         j++;
     }
 
     i = 1;
     while (j <= n) {
-        v[i].push_back(j);
+        cout << i << ' ' << j << '\n';
         i = j;
         j++;
-    }
-
-    for (int i = 1; i < n; ++i) {
-        for (int j = 0; j < v[i].size(); ++j) {
-            cout << i << ' ' << v[i][j] << '\n';
-        }
     }
 
 }
