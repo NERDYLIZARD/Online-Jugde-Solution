@@ -45,6 +45,7 @@ int dfs(int l, int r, int t, int b) {
     int mxRowIndex = distance(c, find(c + t + 1, c + b, mxRow));
 
     // no more cut for Row or Col
+        // set -1 for next comparison
     if (col == 1) mxCol = -1;
     if (row == 1) mxRow = - 1;
 
