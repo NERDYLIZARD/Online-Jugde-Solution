@@ -7,7 +7,7 @@
 using namespace std;
 
 map<int, vector<int>> mapp;
-bool check[10001] = {false};
+bool visited[10001] = {false};
 int findDiameter(int);
 int total;
 
@@ -29,10 +29,10 @@ int main() {
 }
 
 int findDiameter(int n) {
-    check[n] = true;
+    visited[n] = true;
     int mx = -1, secMx = -1;
     for (auto it : mapp[n]) {
-        if (!check[it]) {
+        if (!visited[it]) {
             int temp = findDiameter(it);
             if (mx <= temp) {
                 secMx = mx;
