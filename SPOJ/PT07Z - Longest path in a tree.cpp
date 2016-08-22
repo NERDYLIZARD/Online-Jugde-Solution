@@ -1,6 +1,5 @@
+// www.spoj.com/problems/PT07Z/
 #include <iostream>
-#include <cmath>
-#include <string>
 #include <algorithm>
 #include <map>
 #include <vector>
