@@ -1,10 +1,7 @@
 #include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <vector>
-#define whatIs(x) std::cerr << #x << ": " << x << std::endl;
 
 using namespace std;
+
 long long dfs(long long, int);
 int n, k, d;
 long long mod = 1000000007;
@@ -17,6 +14,7 @@ int main() {
     }
 
     cin >> n >> k >> d;
+
     long long cnt = 0;
     for (int i = 1; i <= k; ++i) {
         cnt += dfs(i, i>=d);
