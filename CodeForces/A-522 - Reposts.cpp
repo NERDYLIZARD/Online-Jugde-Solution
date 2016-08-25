@@ -3,8 +3,6 @@
 #include <map>
 #include <string>
 
-#define whatIs(x) std::cerr << #x << ": " << x << std::endl;
-
 using namespace std;
 map<string, vector<string>> mapp;
 
