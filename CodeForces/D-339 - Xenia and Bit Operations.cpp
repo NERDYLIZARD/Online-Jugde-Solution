@@ -1,24 +1,26 @@
+// 27 AUG 2016
+// codeforces.com/problemset/problem/339/D
+    // implementation: O(m*n) O'(2^n)
+    // create pow of 2 table for looking up
+        // so that no need to compute 2^i, just num[i]
 #include <iostream>
 #include <vector>
 
-typedef long long ll;
 using namespace std;
 
 int main() {
     int n;
-    ll m, p, b;
+    long m, p, b;
     cin >> n >> m;
-    ll num[n];
-    vector<ll> v[n+1];
+    long num[n];
+    vector<long> v[n+1];
 
-    // create pow of 2 table for looking up
-        // so that no need to compute 2^i, just num[i]
     num[0] = 1;
     for (int i = 1; i <= n; ++i) {
         num[i] = 2 * num[i-1];
     }
 
-    ll temp;
+    long temp;
     for (int i = 0; i < num[n]; ++i) {
         cin >> temp;
         v[n].push_back(temp);

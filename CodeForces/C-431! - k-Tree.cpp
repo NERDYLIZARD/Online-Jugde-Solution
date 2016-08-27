@@ -1,3 +1,7 @@
+// 23th AUG 2016
+//codeforces.com/problemset/problem/431/C
+    // naive recursion: TLE O(k^n) ~ 100^100
+
 #include <iostream>
 using namespace std;
 

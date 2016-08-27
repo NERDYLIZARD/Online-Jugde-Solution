@@ -1,42 +1,37 @@
 // 26th AUG 2016
 //codeforces.com/contest/522/problem/A
-
+    // topdown sum from root to leaves [cool]
 #include <iostream>
 #include <algorithm>
 #include <map>
 #include <string>
 
 using namespace std;
-map<string, vector<string>> mapp;
+map<string, int> mapp;
 
-string lowerCase(string& s) {
+string toLowerCase(string& s) {
     for (char& i: s) {
         i = std::tolower(i);
     }
     return s;
 }
 
-int dfs(string s) {
-    if (mapp[s].empty()) {
-        return 1;
-    }
-    int mx = 0;
-    for (string i : mapp[s]) {
-        mx = max(mx, dfs(i));
-    }
-    return mx + 1;
-}
-
 int main() {
     int n;
     cin >> n;
+
+    mapp["polycarp"] = 1;
+
     for (int i = 1; i <= n; ++i) {
         string s, x, ss;
         cin >> s >> x >> ss;
-        mapp[lowerCase(ss)].push_back(lowerCase(s));
+        mapp[toLowerCase(s)] = mapp[toLowerCase(ss)] + 1;
     }
 
-    cout << dfs("polycarp");
+    int mx = 0;
+    for (auto i : mapp)
+        mx = max(i.second, mx);
+    cout << mx;
 
 }
 

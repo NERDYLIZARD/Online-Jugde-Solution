@@ -1,4 +1,6 @@
+// 25th AUG 2016
 //codeforces.com/problemset/problem/431/C
+    // DP: O(n*k)
 #include <iostream>
 
 using namespace std;
