@@ -1,3 +1,9 @@
+// 28th AUG 2016
+// codeforces.com/problemset/problem/339/D
+    // Segment tree: O(m*n) O'(2^n)
+    // same running time as naive implementation
+        // but new knowledge
+
 #include <iostream>
 
 using namespace std;

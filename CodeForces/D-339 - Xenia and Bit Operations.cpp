@@ -40,6 +40,12 @@ int main() {
     while(m--) {
         cin >> p >> b;
         --p;
+        // trivial optimization
+        if (v[n][p] == b) {
+            cout << v[0][0] << '\n';
+            continue;
+        }
+
         v[n][p] = b;
 
         toggle = true;
