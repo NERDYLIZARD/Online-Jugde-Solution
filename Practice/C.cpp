@@ -1,59 +1,60 @@
 #include <iostream>
+#include <list>
 
 using namespace std;
-long t[1<<18];
 
-long build(long node, long beg, long en, int toggle) {
-    if (beg == en) {
-        long temp;
-        cin >> temp;
-        t[node] = temp;
-        return t[node];
-    }
-    long mid = (beg+en)/2;
-    long left = build(2*node, beg, mid, toggle-1);
-    long right = build(2*node+1, mid+1, en, toggle-1);
+list<long> t[100008];
+long a[100008];
+long c[100008];
+bool x[100008];
+long cnt;
 
-    if(toggle%2)
-        t[node] = left | right;
-    else
-        t[node] = left ^ right;
-
-    return t[node];
-}
-
-void update(long node, long beg, long en,
-            long index, long value, int toggle) {
-
-    if (beg == en) {
-        t[node] = value;
-        return;
-    }
-
-    long mid = (beg+en)/2;
-    if (index <= mid)
-        update(2*node, beg, mid, index, value, toggle-1);
-    else
-        update(2*node+1, mid+1, en, index, value, toggle-1);
-
-    if(toggle % 2)
-        t[node] = t[2*node] | t[2*node+1];
-    else
-        t[node] = t[2*node] ^ t[2*node+1];
+long dfsCount(long n, long p) {
+    int cnt = 0;
+    for (auto i : t[n])
+        if (i != p)
+            cnt += dfsCount(i, n);
+    return 1;
 
 }
+
+void dfsEach(long n, long p, long w) {
+    w += c[n];
+    if (w > a[n]) {
+        x[n] = true;
+        cnt += dfsCount(n, p);
+    }
+    for (auto i : t[n])
+        if (i != p && !x[i])
+            dfsEach(i, n, w);
+}
+
+void dfs(long n, long p) {
+
+    for (auto i : t[n])
+        if (i != p && !x[i])
+            dfsEach(i, n, 0);
+
+    for (auto i : t[n])
+        if (i != p && !x[i])
+            dfs(i, n);
+
+}
+
 
 int main() {
-    int n; cin >> n;
-    long m; cin >> m;
-    build(1, 1, 1<<n, n);
-
-    long p, b;
-    while(m--) {
-        cin >> p >> b;
-        update(1, 1, 1<<n, p, b, n);
-        cout << t[1] << '\n';
+    long n; cin >> n;
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
+    long x, y;
+    for (int i = 2; i <= n; ++i) {
+        cin >> x >> y;
+        t[i].push_back(x);
+        t[x].push_back(i);
+        c[i] = y;
     }
+    dfs(1, 0);
+    cout << cnt;
 
 }
 

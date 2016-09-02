@@ -1,3 +1,5 @@
+// 02nd SEP 2016
+// uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3769
 #include <cstdio>
 #include <iostream>
 #include <vector>
