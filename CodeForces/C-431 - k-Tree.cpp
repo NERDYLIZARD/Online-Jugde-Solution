@@ -44,6 +44,7 @@ long long dfs(long long w, int check) {
                 cnt %= mod;
             }
         }
+        // hero of the story
         dp[w][check] = cnt;
     }
     return dp[w][check];

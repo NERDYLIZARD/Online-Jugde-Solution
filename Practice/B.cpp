@@ -1,63 +1,57 @@
+// 25th AUG 2016
+//codeforces.com/problemset/problem/431/C
+    // DP: O(n*k)
 #include <iostream>
-#include <vector>
 
 using namespace std;
-vector<long> v[100002];
-vector<long> res;
-long a[100002], b[100002];
-bool visited[100002] = {false};
 
-void fix(int n, int bit) {
-    if (visited[n])
-        return;
-    visited[n] = true;
-    a[n] ^= bit;
-    for (auto i : v[n])
-        fix(i, !bit);
-    visited[n] = false;
-}
-
-void dfs(long n) {
-    if (visited[n])
-        return;
-
-    visited[n] = true;
-    if (a[n] == b[n]) {
-        for (auto i : v[n]) {
-            dfs(i);
-        }
-    }
-    else {
-        bool bit = true;
-        a[n] ^= bit;
-        res.push_back(n);
-        for (auto i : v[n])
-            fix(i, !bit);
-    }
-}
+long long dfs(long long, int);
+int n, k, d;
+long long mod = 1000000007;
+long long dp[102][2];
 
 int main() {
-    long n; cin >> n;
-    long x, y;
-    for (int i = 1; i < n; ++i) {
-        cin >> x >> y;
-        v[x].push_back(y);
-        v[y].push_back(x);
+    for (int i = 1; i <= 102; ++i){
+        dp[i][0] = -1;
+        dp[i][1] = -1;
     }
-    for (int i = 1; i <= n; ++i)
-        cin >> a[i];
-    for (int i = 1; i <= n; ++i)
-        cin >> b[i];
 
-    for (int i = 1; i <= n; ++i)
-        dfs(i);
+    cin >> n >> k >> d;
 
-    cout << res.size() << '\n';;
-    for (auto i : res)
-        cout << i << '\n';
+    long long cnt = 0;
+    for (int i = 1; i <= k; ++i) {
+        cnt += dfs(i, i>=d);
+        cnt %= mod;
+    }
+    cout << cnt ;
+    for (int i = 1; i <= 102; ++i){
+        cout << i << '0' << ':' << dp[i][0] << '\n';
+        cout << i << '1' << ':' << dp[i][1] << '\n';
 
+    }
+}
 
+long long dfs(long long w, int check) {
+    if (dp[w][check] != -1)
+        return dp[w][check];
 
+    if (w > n)
+        dp[w][check] = 0;
+
+    else if (w == n && check)
+        dp[w][check] = 1;
+
+    else {
+        long long cnt = 0;
+        for (int it = 1; it <= k; ++it) {
+            if (w + it <= n) {
+                cnt += dfs(w + it, check || it>=d);
+                cnt %= mod;
+            }
+        }
+        dp[w][check] = cnt;
+    }
+    return dp[w][check];
 }
 
 
