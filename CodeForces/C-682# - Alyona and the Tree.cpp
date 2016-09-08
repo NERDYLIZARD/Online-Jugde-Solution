@@ -29,7 +29,7 @@ int main() {
     long x; ll y;
     for (int i = 2; i <= n; ++i) {
         cin >> x >> y;
-        // i is non repeated i.e, leaves
+        // i is non repeated
             // no need of alternative push_back
         t[x].push_back(make_pair(i, y));
     }

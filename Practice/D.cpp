@@ -3,18 +3,14 @@
 
 using namespace std;
 vector<long> t[50008];
-bool dp[5000][5000] = {false};
 int k;
 long cnt;
 
 void dfsCount(int n, int p, int track, int root) {
-    if (dp[root][n])
-        return;
+
     if (track == k) {
-            cnt++;
-            dp[n][root] = 1;
-            dp[root][n] = 1;
-            return ;
+        cnt++;
+        return ;
     }
 
     for (auto i : t[n])
@@ -42,7 +38,7 @@ int main() {
     }
 
     dfs(1, 0);
-    cout << cnt;
+    cout << cnt/2;
 
 }
 
