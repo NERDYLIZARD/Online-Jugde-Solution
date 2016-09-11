@@ -1,3 +1,7 @@
+// 11th SEP 2016
+//codeforces.com/problemset/problem/712/A
+// Implementation: O(N)
+
 #include <iostream>
 
 using namespace std;
