@@ -1,30 +1,30 @@
 #include <iostream>
-#include <limits>
-#include <cmath>
-#include <string>
-#include <cstring>
-#include <algorithm>
 #include <map>
-#include <vector>
-#define whatIs(x) std::cerr << #x << ": " << x << std::endl;
+#include <cmath>
 
 using namespace std;
 
 int main()
 {
-    float maxAngle = 5 * 3.14 / 12;
-    while(1) {
+    long n; cin >> n;
+    long long a[n+1], b[n+1];
 
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
 
-        float normal;
-        cin >> normal;
-        if (normal == 8) break;
-        float angle = maxAngle*normal;
-        whatIs(normal);
-        whatIs(angle);
-        whatIs(cos(angle));
-        whatIs(-sin(angle));
+    for (int i = n; i >=1; --i) {
+        b[i] = a[i];
+        for (int j = i; j <= n-1; ++j) {
+            if (j%2 != i%2)
+                b[i] -= b[j+1];
+            else
+                b[i] += b[j+1];
+        }
     }
+
+    for (int i = 1; i <= n; ++i)
+        cout << b[i] << ' ';
+
 
 }
 

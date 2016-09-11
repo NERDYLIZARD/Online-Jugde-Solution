@@ -43,8 +43,8 @@ int main() {
         t[y].push_back(x);
     }
 
-    accumulateDP(1, -1);
-    dfs(1, -1);
+    accumulateDP(1, 0);
+    dfs(1, 0);
 
     long long cnt = 0;
     for (int i = 1; i <= n; ++i)

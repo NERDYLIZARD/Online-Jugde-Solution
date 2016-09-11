@@ -1,4 +1,6 @@
-//712B - Memory and Trident
+// 10th SEP 2016
+//codeforces.com/problemset/problem/712/B
+// Implementation: O(N)
 #include <iostream>
 #include <cmath>
 #include <map>
