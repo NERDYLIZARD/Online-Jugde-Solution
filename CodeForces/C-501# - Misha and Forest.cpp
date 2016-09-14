@@ -1,9 +1,18 @@
+// 13th SEP 2016
+//codeforces.com/contest/504/problem/A
+// Queue: O(N)
+    // construct tree from leaves i,e degree = 1
+    // init: enqueue leaves
+    // dequeue until finding a new node with degree = 1, enqueue it
+    // ignore nodes with degree = 0 (last node)
+    // until q is empty
+    // each dequeue yields an answer edge
+
 #include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
-typedef long long ll;
 
 vector<pair<long, long>> t;
 vector<pair<long, long>> ans;

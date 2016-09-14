@@ -1,49 +1,28 @@
 #include <cstdio>
-#include <iostream>
-#include <vector>
-#include <map>
+#include <cstring>
 
 using namespace std;
 
-map<long, vector<long>> t;
-
-void print(int n) {
-    if (n == -1) return;
-    print(t[n][0]);
-    print(t[n][1]);
-    cout << n << '\n';
-
-}
-
-void build(int n, int p, int i) {
-    if(n == -1) {
-        t[p][i>=p] = i;
-        return;
-    }
-    if (i >= n)
-        build(t[n][1], n, i);
-    else
-        build(t[n][0], n, i);
-
-}
-
 int main() {
-    vector<long> a;
-    long input;
-    while (scanf("%d", &input) != EOF)
-        a.push_back(input);
+    long l = 1, r = 1000000;
+    while (l != r) {
+        long mid = (l + r + 1) / 2;
+        printf("%d\n", mid);
+        fflush(stdout);
 
-    for (int i : a) {
-        t[i].push_back(-1);
-        t[i].push_back(-1);
+        char input[3];
+        scanf("%s", input);
+
+        if (strcmp(input, "<") == 0)
+            r = mid-1;
+        else
+            l = mid;
     }
 
-    for (int i = 1; i < a.size(); ++i)
-        build(a[0], 0, a[i]);
+    printf("! %d\n", l);
+    fflush(stdout);
 
-    print(a[0]);
 
-    return 0;
 }
 
 
