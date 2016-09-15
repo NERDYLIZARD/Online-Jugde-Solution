@@ -1,3 +1,7 @@
+// 15th SEPT 2016
+//codeforces.com/contest/714/problem/A
+// elegant implementation: O(1)
+
 #include <iostream>
 
 using namespace std;
