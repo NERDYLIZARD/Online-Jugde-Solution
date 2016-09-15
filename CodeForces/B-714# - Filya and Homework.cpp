@@ -1,6 +1,6 @@
 // 14th SEP 2016
 //codeforces.com/contest/714/problem/B
-// Sorting: O(nlogn)
+// Sorting: O(NlogN)
     // elegant if-else ordering
 
 #include <iostream>

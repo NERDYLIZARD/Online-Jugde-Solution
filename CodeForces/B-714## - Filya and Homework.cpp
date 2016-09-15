@@ -1,6 +1,6 @@
 // 14th SEP 2016
 //codeforces.com/contest/714/problem/B
-// Set: O(n)
+// Set: O(NlogN) due to insert() = O(logN)
     // elegant if-else ordering
 
 #include <iostream>
