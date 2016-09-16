@@ -1,3 +1,7 @@
+// 16th SEPT 2016
+//codeforces.com/contest/369/problem/C
+// dfs: O(N)
+
 #include <iostream>
 #include <vector>
 
