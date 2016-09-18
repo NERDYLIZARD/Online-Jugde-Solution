@@ -10,7 +10,7 @@ int main()
     long n;
     long long c;
     cin >> n >> c;
-    long t[n];
+    long t[n+1];
 
     for (int i = 1; i <= n; ++i)
         cin >> t[i];
