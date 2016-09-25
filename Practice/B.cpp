@@ -1,44 +1,66 @@
-// 14th SEP 2016
-//codeforces.com/contest/714/problem/B
-// Sorting: O(nlogn)
-
 #include <iostream>
-#include <algorithm>
+#include <map>
 #include <vector>
 
 using namespace std;
 
-vector<long long> v;
+map<char, int> mapp;
 
 int main()
 {
-    long n; cin >> n;
-    long long a[n];
-    for (int i = 0; i < n; ++i) {
-        cin >> a[i];
+    string s; cin >> s;
+    // compute 1st 26, mark range i, j
+    int i = 0, j = 0, cnt = 0;
+    while (j <= 25) {
+        if (s[j] == '?') {cnt++; j++; continue;}
+        mapp[s[j]]++;
+        if (mapp[s[j]] == 1) cnt++;
+        j++;
     }
-    sort(a, a+n);
 
-    long long cur = -1;
-    for (int i = 0; i < n; ++i) {
-        if (v.size() > 3) break;
-        if (cur != a[i]) {
-            v.push_back(a[i]);
-            cur = a[i];
+    // compute the rest if count < 26
+    cout << s.size();
+    while (cnt < 26 && j < s.size()) {
+        cout << cnt << ' ' << j <<'\n';
+        mapp[s[i]]--;
+        if (mapp[s[i]] == 0) // only >= 1
+            cnt--;
+        i++;
+        if (s[j] == '?') {cnt++; j++; continue;}
+        mapp[s[j]]++;
+        if (mapp[s[j]] == 1) cnt++;
+        j++;
+    }
+
+    if (cnt < 26) {
+        puts("-1");
+        return 0;
+    }
+    // fill aux array O(26)
+    vector<char> aux;
+    for (char k = 'A'; k <= 'Z'; ++k) {
+        if (!mapp[k])
+            aux.push_back(k);
+    }
+    cout << '*';
+    for (auto k : aux)
+        cout << k;
+    cout << '*';
+
+    // fill subarray with aux and print
+    int l = 0;
+    for (int k = 0; k < s.size(); ++k) {
+        if (s[k] == '?') {
+            if (i <= k && k < j)
+                s[k] = aux[l++];
+            else
+                s[k] = 'A';
         }
     }
 
-    if (v.size() == 1 || v.size() == 2)
-        cout << "YES";
-    else if (v.size() == 3) {
-        long long diff = v[1] - v[0];
-        if (v[0] + diff == v[1]
-            && v[2] - diff == v[1])
-            cout << "YES";
-        else
-            cout << "NO";
-    }
-    else
-        cout << "NO";
+    for (auto k : s)
+        cout << k;
+
+
 
 }
