@@ -10,9 +10,9 @@ using namespace std;
 vector<pair<long, long>> t[100008];
 vector<long> ans;
 
-long dfs(long n, long p, bool isProblem) {
+bool dfs(long n, long p, bool isProblem) {
 
-    long isNotified = 0;
+    bool isNotified = 0;
     for (auto i : t[n]) {
         if (i.first == p) continue;
         isNotified |= dfs(i.first, n, i.second == 2);

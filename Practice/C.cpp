@@ -1,31 +1,44 @@
-#include<stdio.h>
+#include <cstdio>
+#include <vector>
 
-// Returns the count of ways we can sum  S[0...m-1] coins to get sum n
-int count( int S[], int m, int n )
-{
-    // If n is 0 then there is 1 solution (do not include any coin)
-    if (n == 0)
-        return 1;
+using namespace std;
 
-    // If n is less than 0 then no solution exists
-    if (n < 0)
-        return 0;
+vector<pair<int, long long>> t[5008];
+vector<int> V;
+int n, m;
+long long T;
 
-    // If there are no coins and n is greater than 0, then no solution exist
-    if (m <=0 && n >= 1)
-        return 0;
+vector<int> dfs(int n, long long w) {
 
-    // count is sum of solutions (i) including S[m-1] (ii) excluding S[m-1]
-    return count( S, m - 1, n ) + count( S, m, n-S[m-1] );
+    vector<int> v;
+    for (auto i : t[n]) {
+
+        if (i.second + w > T) continue;
+
+        vector<int> vv(dfs(i.first, i.second + w));
+        if (v.size() <= vv.size()) {
+            v.clear();
+            v = vv;
+        }
+    }
+    //base case
+    v.push_back(n);
+    return v;
 }
 
-// Driver program to test above function
 int main()
 {
-    int i, j;
-    int arr[] = {1, 2, 3};
-    int m = sizeof(arr)/sizeof(arr[0]);
-    printf("%d ", count(arr, m, 6));
-    getchar();
-    return 0;
+    scanf("%d %d %I64d", &n,&m,&T);
+    int x, y; long long z;
+    for (int i = 1; i <= m; ++i) {
+        scanf("%d %d %I64d", &x,&y,&z);
+        t[x].push_back(make_pair(y, z));
+    }
+
+    vector<int> V = dfs(1, 0);
+    printf("%d\n", V.size());
+    for (auto i : V)
+        printf("%d ", i);
+
 }
+

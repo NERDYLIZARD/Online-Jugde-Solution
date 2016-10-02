@@ -1,3 +1,7 @@
+// 01st OCT 2016
+//codeforces.com/contest/722/problem/A
+// impl: O(n)
+
 #include <cstdio>
 
 using namespace std;
