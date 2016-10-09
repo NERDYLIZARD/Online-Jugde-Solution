@@ -1,27 +1,13 @@
 #include <cstdio>
-#include <cstring>
+#include <iostream>
 
 using namespace std;
 
 int main() {
-    long l = 1, r = 1000000;
-    while (l != r) {
-        long mid = (l + r + 1) / 2;
-        printf("%d\n", mid);
-        fflush(stdout);
+    int a = 3, b =2;
+    float c = a / b;
 
-        char input[3];
-        scanf("%s", input);
-
-        if (strcmp(input, "<") == 0)
-            r = mid-1;
-        else
-            l = mid;
-    }
-
-    printf("! %d\n", l);
-    fflush(stdout);
-
+    printf("%f", c);
 
 }
 

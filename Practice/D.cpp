@@ -1,34 +1,55 @@
-// 28th SEPT 2016
-//uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=615
-// DP: O(n*m)
+// 09th SEP 2016
+//codeforces.com/contest/161/problem/D
+// DP: O(n*k)
 
-#include <cstdio>
-#include <cstring>
+#include <iostream>
+#include <vector>
 
 using namespace std;
+vector<long> t[50008];
+long dp[50008][508];
+int k;
 
-int c[] = {50, 25, 10, 5, 1};
-long long dp[8000][5];
+void accumulateDP(int n, int p) {
+    dp[n][0] = 1;
+    for(auto i : t[n]) {
+        if (i != p) {
+            accumulateDP(i, n);
+            for (int j = 1; j <= k; ++j)
+                dp[n][j] += dp[i][j-1];
+        }
+    }
+}
 
-long long wayCount(int n, int m) {
-
-    if (n == 0) return 1;
-    if (n < 0) return 0;
-    if (m <= 0) return 0;
-
-    if (dp[n][m] != -1)
-        return dp[n][m];
-
-    return dp[n][m] = wayCount(n, m-1)
-                    + wayCount(n-c[m-1], m);
+void dfs(int n, int p) {
+    for (auto i : t[n]) {
+        if (i != p) {
+            for (int j = k; j >= 1; --j) {
+                dp[i][j] += dp[n][j-1];
+                if (j > 1) dp[i][j] -= dp[i][j-2];
+            }
+            dfs(i, n);
+        }
+    }
 }
 
 int main() {
-    int n;
-    memset(dp, -1, sizeof(dp));
+    long n; scanf("%d%d", &n, &k);
+    long x, y;
+    for (int i = 1; i < n; i++) {
+        scanf("%d%d", &x, &y);
+        t[x].push_back(y);
+        t[y].push_back(x);
+    }
 
-    while (scanf("%d", &n) != EOF)
-        printf("%I64d\n", wayCount(n, 5));
+    accumulateDP(1, -1);
+    dfs(1, -1);
+
+    long long cnt = 0;
+    for (int i = 1; i <= n; ++i)
+        cnt += dp[i][k];
+
+    printf("%I64d", cnt/2LL);
 
 }
 
