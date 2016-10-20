@@ -1,3 +1,7 @@
+// 20th OCT 2016
+//codeforces.com/contest/724/problem/B
+// implementation: O(m*n)
+
 #include <cstdio>
 #include <algorithm>
 
