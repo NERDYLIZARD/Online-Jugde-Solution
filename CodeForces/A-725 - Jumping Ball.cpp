@@ -1,4 +1,4 @@
-// 23rd OCT 2016
+// 22nd OCT 2016
 //codeforces.com/contest/725/problem/A
 // impl: O(n)
 #include <cstdio>
