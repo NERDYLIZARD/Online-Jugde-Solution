@@ -16,7 +16,6 @@ int main()
 
     ans += min(two, min(five, six)) * 256;
     two -= min(two, min(five, six));
-    if (two < 0) two = 0;
     ans += min(two, three) * 32;
 
     printf("%I64d", ans);

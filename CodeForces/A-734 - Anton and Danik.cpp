@@ -1,3 +1,7 @@
+// 15th NOV 2016
+//codeforces.com/contest/734/problem/A
+// impl: O(n)
+
 #include <cstdio>
 
 using namespace std;
@@ -10,9 +14,9 @@ int main()
     scanf("%s", s);
 
     int a = 0, d = 0;
-    for (int i = 0; i < n; ++i) {
-        a += (s[i] == 'A');
-        d += (s[i] == 'D');
+    for (char c : s) {
+        a += (c == 'A');
+        d += (c == 'D');
     }
 
     if (a > d) puts("Anton");
@@ -20,3 +24,6 @@ int main()
     else puts("Friendship");
 
 }
+
+
+

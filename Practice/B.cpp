@@ -1,66 +1,29 @@
-#include <iostream>
-#include <map>
-#include <vector>
+#include <cstdio>
+#include <cmath>
 
 using namespace std;
 
-map<char, int> mapp;
+int a[408][408];
 
 int main()
 {
-    string s; cin >> s;
-    // compute 1st 26, mark range i, j
-    int i = 0, j = 0, cnt = 0;
-    while (j <= 25) {
-        if (s[j] == '?') {cnt++; j++; continue;}
-        mapp[s[j]]++;
-        if (mapp[s[j]] == 1) cnt++;
-        j++;
-    }
+    int t; scanf("%d", &t);
+    while (t--) {
+        int n; scanf("%d", &n);
 
-    // compute the rest if count < 26
-    cout << s.size();
-    while (cnt < 26 && j < s.size()) {
-        cout << cnt << ' ' << j <<'\n';
-        mapp[s[i]]--;
-        if (mapp[s[i]] == 0) // only >= 1
-            cnt--;
-        i++;
-        if (s[j] == '?') {cnt++; j++; continue;}
-        mapp[s[j]]++;
-        if (mapp[s[j]] == 1) cnt++;
-        j++;
-    }
-
-    if (cnt < 26) {
-        puts("-1");
-        return 0;
-    }
-    // fill aux array O(26)
-    vector<char> aux;
-    for (char k = 'A'; k <= 'Z'; ++k) {
-        if (!mapp[k])
-            aux.push_back(k);
-    }
-    cout << '*';
-    for (auto k : aux)
-        cout << k;
-    cout << '*';
-
-    // fill subarray with aux and print
-    int l = 0;
-    for (int k = 0; k < s.size(); ++k) {
-        if (s[k] == '?') {
-            if (i <= k && k < j)
-                s[k] = aux[l++];
-            else
-                s[k] = 'A';
+        for (int i = 2; i < n+2; ++i) {
+            int temp = n;
+            for (int j = i; j < n+i; ++j)
+                a[i%n][j%n] = temp--;
         }
+
+        for (int i = 0; i < n; ++i){
+            for (int j = 0; j < n; ++j) {
+                printf("%d ", a[i][j]);
+            }
+            printf("\n");
+        }
+
     }
-
-    for (auto k : s)
-        cout << k;
-
-
 
 }
