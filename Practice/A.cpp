@@ -1,8 +1,7 @@
-    #include <bits/stdc++.h>
+    #include <cstdio>
     #define MOD 1000000007
     using namespace std;
     typedef long long LL;
-    typedef pair<int, int> pii;
 
     int main()
     {
@@ -18,6 +17,7 @@
     				printf("%d ", ((i + j + (N / 2) + 1) % N) + 1);
     			printf("\n");
     		}
+    		printf("\n");
     	}
 
     	return 0;

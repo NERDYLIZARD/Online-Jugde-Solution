@@ -1,5 +1,8 @@
+// 17th NOV 2016
+//www.codechef.com/problems/CHSQR
+// impl: O(n)
+
 #include <cstdio>
-#include <cmath>
 
 using namespace std;
 
@@ -9,6 +12,7 @@ int main()
 {
     int t; scanf("%d", &t);
     while (t--) {
+
         int n; scanf("%d", &n);
 
         int mid = (n+1)/2;
@@ -19,8 +23,8 @@ int main()
             printf("\n");
         }
 
-
-
     }
 
 }
+
+
