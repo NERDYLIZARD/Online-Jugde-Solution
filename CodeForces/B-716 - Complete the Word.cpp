@@ -1,3 +1,7 @@
+// 18th NOV 2016
+//codeforces.com/contest/716/problem/B
+// two pointers: O(|s|)
+
 #include <cstdio>
 #include <vector>
 
@@ -32,7 +36,7 @@ int main()
         puts("-1");
     else {
         vector<char> v;
-        for (int k = 0; k < 26; k++)
+        for (int k = 0; k < 26; ++k)
             if (!cnt[k]) v.push_back(k +'A');
 
         int k = 0;

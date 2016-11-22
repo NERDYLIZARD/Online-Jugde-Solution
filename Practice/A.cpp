@@ -3,22 +3,20 @@
     using namespace std;
     typedef long long LL;
 
-    int main()
-    {
-    	int T = 1, N;
+int main()
+{
+    char a[2000];
+    int i = 0;
+    a[20] = '1';
 
-    	scanf("%d", &T);
-    	while (T--)
-    	{
-    		scanf("%d", &N);
-    		for (int i = 0; i < N; i++)
-    		{
-    			for (int j = 0; j < N; j++)
-    				printf("%d ", ((i + j + (N / 2) + 1) % N) + 1);
-    			printf("\n");
-    		}
-    		printf("\n");
-    	}
+    while (i < 25) {
+        if (a[i++] == '?') {
 
-    	return 0;
+        }
+
     }
+
+    printf("%d", i);
+
+    return 0;
+}
