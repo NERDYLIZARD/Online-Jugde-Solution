@@ -1,55 +1,32 @@
 #include <cstdio>
-#include <vector>
 
 using namespace std;
 
-int cnt[26];
-char s[50008];
+const long long INF = 1008;
+const long long mod = 1e9+7;
+
+long long fact[INF];
 
 int main()
 {
-    scanf("%s", s);
+    fact[1] = 1;
+    for (int i = 2; i < INF; ++i)
+        fact[i] = (fact[i-1] * i) % mod;
 
-    int i = 0, j = 0;
-    for (; s[j] != '\0'; ++j) {
 
-        if (j-i+1 > 26) break;
-        if (s[j] == '?') continue;
+    int t; scanf("%d", &t);
+    while (t--) {
+        int n; scanf("%d", &n);
 
-        if (!cnt[s[j]-'A'])
-            cnt[s[j]-'A']++;
-        else {
-            while (s[i] != s[j]) {
-                cnt[s[i]-'A']--;
-                i++;
-            }
-            i++;
-        }
-    }
-
-    j--;
-    if (j-i+1 < 26)
-        puts("-1");
-    else {
-        vector<char> v;
-        for (int k = 0; k < 26; k++)
-            if (!cnt[k]) v.push_back(k +'A');
-
-        int k = 0;
-        while (i <= j) {
-            if (s[i] == '?')
-                s[i] = v[k++];
-            i++;
+        long long cnt = 0;
+        for (int i = 3; i <= n; ++i) {
+            cnt += ((i-2) * fact[i-1]) % mod;
         }
 
-        for (int i = 0; s[i] != '\0'; ++i)
-            if (s[i] == '?')
-                printf("A");
-            else
-                printf("%c", s[i]);
-
+        printf("%lld\n", cnt);
     }
 
 }
+
 
 

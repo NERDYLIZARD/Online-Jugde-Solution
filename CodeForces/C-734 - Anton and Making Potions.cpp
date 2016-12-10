@@ -1,3 +1,7 @@
+// 05th DEC 2016
+//codeforces.com/contest/734/problem/C
+// BinarySearch: O(MlogK)
+
 #include <cstdio>
 #include <algorithm>
 #include <vector>
