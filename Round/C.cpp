@@ -1,47 +1,85 @@
-// 10th JAN 2016
-//codeforces.com/contest/104/problem/C
-// DSU: O(MlogN)
-    // logN : path compression DSU
-
-// can optimized with DFS to check for multiple
-    //unconnected graphs with cycle: O(n+m)
-// OR: O(m) with DSU with Union rank and Path compression
+// 11th JAN 2017
+//codeforces.com/problemset/problem/427/C
+// KosarajuSCC: O(n+m)
 
 #include <cstdio>
+#include <vector>
+#include <cstring>
 
 using namespace std;
+typedef long long i64;
 
-const int N = 108;
-
-int parent[N];
-int findd(int x) { return parent[x] = (x == parent[x] ? x : findd(parent[x])); }
-void join(int x, int y) { parent[findd(x)] = findd(y); }
+const i64 mod = 1000000007;
+const int N = 100008;
+vector<long> v[N], t[N], order;
+bool visited[N];
+i64 costs[N];
 
 int n, m;
+i64 minCost, minCount;
+
+void dfs(long n) {
+    visited[n] = 1;
+    for (auto i : v[n]) {
+        if (!visited[i])
+            dfs(i);
+    }
+    order.push_back(n);
+}
+
+void kosarajuScc(long n) {
+    visited[n] = 1;
+    for (auto i : t[n]) {
+        if (!visited[i])
+            kosarajuScc(i);
+    }
+
+    if (minCost > costs[n]) {
+        minCost = costs[n];
+        minCount = 1;
+    }
+    else if (minCost == costs[n])
+        minCount++;
+
+}
+
 
 int main()
 {
-    scanf("%d%d", &n,&m);
-
-    // find a connected graph with only one cycle
-    // n > m := unconnected graph
-    // n < m := more than one cycle
-    if (n != m) { puts("NO"); return 0;}
-
+    scanf("%d", &n);
     for (int i = 1; i <= n; ++i)
-        parent[i] = i;
-
-    int cycles = 0;
-    for (int a,b, i = 1; i <= m; ++i) {
-        scanf("%d%d", &a,&b);
-        if (findd(a) == findd(b))
-            cycles++;
-        join(a, b);
+        scanf("%d", costs+i);
+    scanf("%d", &m);
+    for (int x,y, i = 1; i <= m; ++i) {
+        scanf("%d%d", &x,&y);
+        v[x].push_back(y);
+        t[y].push_back(x);
     }
 
-    if (cycles == 1) puts("FHTAGN!");
-    else puts("NO");
+    // obtaining order
+    for (int i = 1; i <= n; ++i) {
+        if (!visited[i])
+            dfs(i);
+    }
 
+    memset(visited, 0, sizeof(visited));
+    i64 total = 0;
+    i64 ways = 1;
+    for (int i = n-1; i >= 0; --i) {
+
+        if (visited[order[i]]) continue;
+
+        minCost = mod;
+        minCount = 1;
+
+        kosarajuScc(order[i]);
+
+        total += minCost;
+        ways = (ways * minCount)%mod;
+
+    }
+
+    printf("%I64d %I64d", total, ways);
 
 }
 

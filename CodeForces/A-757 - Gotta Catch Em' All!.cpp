@@ -1,3 +1,7 @@
+// 13th JAN 2017
+//codeforces.com/contest/757/problem/A
+// impl: O(|s|*|a|)
+
 #include <cstdio>
 #include <algorithm>
 

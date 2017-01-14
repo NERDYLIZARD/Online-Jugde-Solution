@@ -1,3 +1,6 @@
+// 11th JAN 2017
+//codeforces.com/problemset/problem/427/C
+// KosarajuSCC: O(n+m)
 
 #include <cstdio>
 #include <vector>
@@ -15,11 +18,11 @@ i64 costs[N];
 int n, m;
 i64 minCost, minCount;
 
-void dfs(long n) {
+void topoSort(long n) {
     visited[n] = 1;
     for (auto i : v[n]) {
         if (!visited[i])
-            dfs(i);
+            topoSort(i);
     }
     order.push_back(n);
 }
@@ -56,7 +59,7 @@ int main()
     // obtaining order
     for (int i = 1; i <= n; ++i) {
         if (!visited[i])
-            dfs(i);
+            topoSort(i);
     }
 
     memset(visited, 0, sizeof(visited));
