@@ -1,4 +1,6 @@
-
+// 16th JAN 2017
+//codeforces.com/contest/417/problem/C
+// implementation: O(n*k)
 
 #include <cstdio>
 
