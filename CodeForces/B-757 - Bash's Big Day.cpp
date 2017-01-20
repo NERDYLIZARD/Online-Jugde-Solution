@@ -1,12 +1,15 @@
+// 20th JAN 2017
+//codeforces.com/contest/757/problem/B
+// gcd: O(nlog(m))  / m - limit of input i.e 10^5
+// avoid gcd(a,b) = 1 that is coprime - numbers that don't have common prime factors
+    // so, we count the prime factor of input
+    // output the most common prime factor.
+
 #include <cstdio>
 #include <unordered_map>
 #include <algorithm>
 #include <cmath>
 
-// gcd: O(nlog(m))  / m - limit of input i.e 10^5
-// avoid gcd(a,b) = 1 that is coprime - numbers that don't have common prime factors
-    // so, we count the prime factor of input
-    // output the most common prime factor.
 
 using namespace std;
 

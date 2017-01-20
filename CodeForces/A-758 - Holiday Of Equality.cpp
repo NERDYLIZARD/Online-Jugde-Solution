@@ -1,3 +1,7 @@
+// 19th JAN 2017
+//codeforces.com/contest/758/problem/A
+// impl: O(n)
+
 #include <cstdio>
 #include <algorithm>
 

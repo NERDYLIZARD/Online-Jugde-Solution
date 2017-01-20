@@ -1,3 +1,8 @@
+// 19th JAN 2017
+//codeforces.com/contest/758/problem/B
+// implementation: O(|s|)
+    // nasted index array call
+
 #include <cstdio>
 
 using namespace std;
