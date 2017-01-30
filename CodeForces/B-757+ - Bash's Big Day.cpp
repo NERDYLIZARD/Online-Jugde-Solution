@@ -10,6 +10,7 @@
                                 // (+1) n/2 time
 // n/2 + n/2 + n/3 + n/4 + . .
 // n + n/3 + n/4 + . .
+// n + n
 // O(n)
 
 using namespace std;
