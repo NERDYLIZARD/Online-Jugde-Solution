@@ -1,4 +1,6 @@
-
+// 01st FEB 2017
+//codeforces.com/contest/761/problem/B
+// impl: O(n^2)
 
 #include <cstdio>
 
